@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Anagram Checker</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Anagram Checker</h1>
+
+        <div class="input-group">
+            <label for="inputString">Enter First Word :</label>
+            <input type="text" id="inputString1" placeholder="Type something here..." autofocus />
+        </div>
+
+        <div class="input-group">
+            <label for="inputString">Enter Second Word:</label>
+            <input type="text" id="inputString2" placeholder="Type something here..." autofocus />
+        </div>
+
+        <button class="btn" onclick="checkAnagram()">Check Anagram</button>
+        <button class="btn" onclick="clearInput()">Clear</button>
+        <br>
+        <a href="./index.html"><button class="btn">Home</button></a>
+
+        <div id="result" class="result"></div>
+    </div>
+    <script>
+        function checkAnagram() {
+            const str1 = document.getElementById("inputString1").value.trim().toLowerCase().replace(/\s+/g, '');
+            const str2 = document.getElementById("inputString2").value.trim().toLowerCase().replace(/\s+/g, '');
+
+            const result = document.getElementById("result");
+            result.className = "result"; 
+
+            if (str1 === "" || str2 === "") {
+                result.innerHTML = "Please fill in both fields!";
+                result.classList.add("empty", "show");
+                return;
+            }
+
+            const sortStr = s => s.split('').sort().join('');
+            if (sortStr(str1) === sortStr(str2)) {
+                result.innerHTML = `"${str1}" and "${str2}" are anagrams.`;
+                result.classList.add("palindrome", "show");
+            } else {
+                result.innerHTML = `"${str1}" and "${str2}" are not anagrams.`;
+                result.classList.add("not-palindrome", "show");
+            }
+        }
+
+        function clearInput() {
+            document.getElementById("inputString1").value = "";
+            document.getElementById("inputString2").value = "";
+            const result = document.getElementById("result");
+            result.innerHTML = "";
+            result.className = "result";
+        }
+
+    </script>
+</body>
+
+</html>

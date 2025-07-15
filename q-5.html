@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>ToggleCase Converter</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>ToggleCase Converter</h1>
+
+        <div class="input-group">
+            <label for="inputString">Enter a string:</label>
+            <input type="text" id="inputString" placeholder="Type something here..." autofocus />
+        </div>
+
+        <button class="btn" onclick="toggleCase()">ToggleCase</button>
+        <button class="btn" onclick="clearInput()">Clear</button>
+        <br>
+        <a href="./index.html"><button class="btn">Home</button></a>
+
+
+        <div id="result" class="togglecase-result"></div>
+    </div>
+    <script>
+
+        function clearInput() {
+            document.getElementById("inputString").value = "";
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = "";
+            resultElement.className = "result"; // Reset classes
+        }
+
+        function toggleCase() {
+            let inputString = document.getElementById("inputString").value.trim();
+            let resultElement = document.getElementById("result");
+
+            // Custom toggle case logic
+            let toggledString = '';
+            for (let char of inputString) {
+                if (char === char.toUpperCase()) {
+                    toggledString += char.toLowerCase();
+                } else {
+                    toggledString += char.toUpperCase();
+                }
+            }
+            console.log(toggledString);
+
+            // resultElement.innerHTML = toggledString;
+            // resultElement.classList.add("palindrome", "show");
+
+             resultElement.innerHTML = toggledString;
+            resultElement.className = "result show";
+        }
+
+
+    </script>
+</body>
+
+</html>

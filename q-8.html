@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Longest Word in Sentence</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Second Largest and Second Smallest Value</h1>
+
+        <div class="input-group">
+            <label for="inputString">Enter a string:</label>
+            <input type="text" id="inputString" placeholder="Enter number seperated by comma" autofocus />
+        </div>
+
+        <button class="btn" onclick="findSecondValues()">2nd Largest</button>
+        <button class="btn" onclick="clearInput()">Clear</button>
+        <br>
+        <a href="./index.html"><button class="btn">Home</button></a>
+
+
+        <div id="result" class="longestcase-result"></div>
+    </div>
+    <script>
+        let num = document.getElementById("inputString")
+        function clearInput() {
+            document.getElementById("inputString").value = "";
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = "";
+        }
+
+        function findSecondValues() {
+            const inputString = document.getElementById("inputString").value.trim();
+            const resultElement = document.getElementById("result");
+
+            if (!inputString) {
+                resultElement.innerHTML = "Please enter some numbers separated by commas.";
+                return;
+            }
+            let numbers = inputString.split(",").map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+
+            if (numbers.length < 2) {
+                resultElement.innerHTML = "Enter at least two valid numbers.";
+                return;
+            }
+
+            numbers = [...new Set(numbers)].sort((a, b) => a - b);
+
+            if (numbers.length < 2) {
+                resultElement.innerHTML = "Not enough unique values to find second values.";
+                return;
+            }
+            const secondSmallest = numbers[1];
+            const secondLargest = numbers[numbers.length - 2];
+
+            resultElement.innerHTML = `Second Smallest: <strong>${secondSmallest}</strong><br>Second Largest: <strong>${secondLargest}</strong>`;
+        }
+
+    </script>
+
+
+</body>
+
+</html>

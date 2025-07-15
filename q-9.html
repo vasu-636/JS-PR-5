@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Longest Word in Sentence</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Find Prime Number</h1>
+
+        <div class="input-group">
+            <label for="inputString">Enter a string:</label>
+            <input type="text" id="inputString" placeholder="Enter number seperated by comma" autofocus />
+        </div>
+
+        <button class="btn" onclick="findPrime()">Prime Number</button>
+        <button class="btn" onclick="clearInput()">Clear</button>
+        <br>
+        <a href="./index.html"><button class="btn">Home</button></a>
+
+
+        <div id="result" class="longestcase-result"></div>
+    </div>
+    <script>
+        let num = document.getElementById("inputString")
+        function clearInput() {
+            document.getElementById("inputString").value = "";
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = "";
+        }
+
+        function findPrime() {
+            const input = document.getElementById("inputString").value.trim();
+            const resultElement = document.getElementById("result");
+
+            if (!input) {
+                resultElement.innerHTML = "Please enter numbers separated by commas.";
+                return;
+            }
+
+            const numbers = input.split(",").map(n => Number(n.trim())).filter(n => n > 1);
+
+            const primes = numbers.filter(n => {
+                for (let i = 2; i <= Math.sqrt(n); i++) {
+                    if (n % i === 0) return false;
+                }
+                return true;
+            });
+
+            resultElement.innerHTML = primes.length > 0
+                ? `Prime numbers: <strong>${primes.join(", ")}</strong>`
+                : "No prime numbers found.";
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

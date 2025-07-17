@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>UpperCase Converter </title>
+    <title>UpperCase Converter</title>
 </head>
 
 <body>
@@ -22,28 +22,31 @@
         <br>
         <a href="./index.html"><button class="btn">Home</button></a>
 
-
-        <div id="result" class="uppercase-result"></div>
+        <div id="result" class="result"></div>
     </div>
-    <script>
 
+    <script>
         function clearInput() {
-            document.getElementById("inputString").value = "";
+            const input = document.getElementById("inputString");
             const resultElement = document.getElementById("result");
-            resultElement.innerHTML = "";
-            resultElement.className = "result"; // Reset classes
+
+            input.value = "";
+            resultElement.textContent = "";
+            resultElement.className = "result";
         }
 
         function upperCase() {
-            let inputString = document.getElementById("inputString").value.trim().toUpperCase();
-            let resultElement = document.getElementById("result");
+            const inputString = document.getElementById("inputString").value.trim();
+            const resultElement = document.getElementById("result");
 
-            resultElement.innerHTML = inputString;
-            console.log(resultElement);
-            resultElement.classList.add("palindrome", "show");
+            if (inputString === "") {
+                resultElement.textContent = "Please enter a string.";
+            } else {
+                resultElement.textContent = inputString.toUpperCase();
+            }
 
+            resultElement.className = "result show";
         }
-
     </script>
 </body>
 

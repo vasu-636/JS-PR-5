@@ -26,38 +26,35 @@
         <div id="result" class="togglecase-result"></div>
     </div>
     <script>
+    function clearInput() {
+        const input = document.getElementById("inputString");
+        const resultElement = document.getElementById("result");
 
-        function clearInput() {
-            document.getElementById("inputString").value = "";
-            const resultElement = document.getElementById("result");
-            resultElement.innerHTML = "";
-            resultElement.className = "result"; // Reset classes
+        input.value = "";
+        resultElement.textContent = "";
+        resultElement.className = "result";
+    }
+
+    function toggleCase() {
+        let inputString = document.getElementById("inputString").value.trim();
+        let resultElement = document.getElementById("result");
+
+        if (inputString === "") {
+            resultElement.textContent = "Please enter a string.";
+            resultElement.className = "result empty show";
+            return;
         }
 
-        function toggleCase() {
-            let inputString = document.getElementById("inputString").value.trim();
-            let resultElement = document.getElementById("result");
-
-            // Custom toggle case logic
-            let toggledString = '';
-            for (let char of inputString) {
-                if (char === char.toUpperCase()) {
-                    toggledString += char.toLowerCase();
-                } else {
-                    toggledString += char.toUpperCase();
-                }
-            }
-            console.log(toggledString);
-
-            // resultElement.innerHTML = toggledString;
-            // resultElement.classList.add("palindrome", "show");
-
-             resultElement.innerHTML = toggledString;
-            resultElement.className = "result show";
+        let toggledString = '';
+        for (let char of inputString) {
+            toggledString += (char === char.toUpperCase()) ? char.toLowerCase() : char.toUpperCase();
         }
 
+        resultElement.textContent = toggledString;
+        resultElement.className = "result togglecase show";
+    }
+</script>
 
-    </script>
 </body>
 
 </html>

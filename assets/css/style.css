@@ -136,7 +136,7 @@ input[type="text"]:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    opacity: 1;
     transition: all 0.3s ease;
     transform: translateY(20px);
 }
